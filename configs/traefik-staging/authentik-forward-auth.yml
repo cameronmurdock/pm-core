@@ -46,8 +46,12 @@ http:
           X-Powered-By: ""
           Server: ""
           X-Forwarded-Server: ""
-          X-Robots-Tag: "noindex,nofollow"
           X-Permitted-Cross-Domain-Policies: "none"
+
+    noindex-private:
+      headers:
+        customResponseHeaders:
+          X-Robots-Tag: "noindex, nofollow"
 
     deny-all:
       ipAllowList:

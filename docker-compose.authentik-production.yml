@@ -114,6 +114,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.authentik.rule=Host(`auth.peers.social`)"
       - "traefik.http.routers.authentik.entrypoints=websecure"
+      - "traefik.http.routers.authentik.middlewares=noindex-private@file"
       - "traefik.http.routers.authentik.tls.certresolver=letsencrypt"
       - "traefik.http.routers.authentik.service=authentik"
       - "traefik.http.services.authentik.loadbalancer.server.port=9000"
@@ -121,11 +122,13 @@ services:
       - "traefik.http.routers.authentik-root-outpost.entrypoints=websecure"
       - "traefik.http.routers.authentik-root-outpost.tls.certresolver=letsencrypt"
       - "traefik.http.routers.authentik-root-outpost.priority=1000"
+      - "traefik.http.routers.authentik-root-outpost.middlewares=noindex-private@file"
       - "traefik.http.routers.authentik-root-outpost.service=authentik"
       - "traefik.http.routers.authentik-admin-outpost.rule=Host(`admin-auth.peers.social`) && PathPrefix(`/outpost.goauthentik.io`)"
       - "traefik.http.routers.authentik-admin-outpost.entrypoints=websecure"
       - "traefik.http.routers.authentik-admin-outpost.tls.certresolver=letsencrypt"
       - "traefik.http.routers.authentik-admin-outpost.priority=1000"
+      - "traefik.http.routers.authentik-admin-outpost.middlewares=noindex-private@file"
       - "traefik.http.routers.authentik-admin-outpost.service=authentik"
 
   authentik-worker:

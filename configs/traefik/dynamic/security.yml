@@ -22,9 +22,9 @@ http:
           default-src 'self';
           script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com;
           style-src 'self' 'unsafe-inline' https://rsms.me;
-          img-src 'self' data: https:;
+          img-src 'self' data: https: blob:;
           font-src 'self' https://rsms.me;
-          connect-src 'self' https://um.peers.social https://challenges.cloudflare.com wss://peers.social;
+          connect-src 'self' blob: https://um.peers.social https://challenges.cloudflare.com wss://peers.social;
           media-src 'self';
           object-src 'none';
           base-uri 'self';
@@ -36,13 +36,17 @@ http:
         customResponseHeaders:
           Server: ""
           X-Powered-By: ""
-          X-Robots-Tag: "noindex, nofollow"
           X-Permitted-Cross-Domain-Policies: "none"
           X-DNS-Prefetch-Control: "off"
           X-Download-Options: "noopen"
         customRequestHeaders:
           X-Powered-By: ""
           Server: ""
+
+    noindex-private:
+      headers:
+        customResponseHeaders:
+          X-Robots-Tag: "noindex, nofollow"
 
     api-security-headers:
       headers:
